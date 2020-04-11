@@ -106,22 +106,21 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 		IndentLevel++;
 		sbuilder.append("class: " + ctx.Identifier(0));
 		if(ctx.getText().contains("implements") || ctx.getText().contains("extends")){
-			sbuilder.append(" class parents: ");
+			sbuilder.append("/ class parents: ");
 			if(ctx.getText().contains("extends")){
 				sbuilder.append(ctx.Identifier(1));
 			}
 			if(ctx.getText().contains("implements")){
 				for(int i = ctx.getText().contains("extends")? 5 : 3; i < ctx.getChildCount(); i++){
-//					System.out.println(ctx.getChild(i).getText());
-//					System.out.println(((Token)ctx.getChild(i).getPayload()).getText().equals("{"));
 
 					if(i == (ctx.getText().contains("extends")? 5 : 3)){
-						sbuilder.append(ctx.getChild(i));
+						sbuilder.append(ctx.getChild(i) + ", ");
 					}else if(ctx.getChild(i).getPayload() instanceof Token && !((Token)ctx.getChild(i).getPayload()).getText().equals("{")){
 						sbuilder.append(", " + ctx.getChild(i));
 					}else{
 						sbuilder.append("{\n");
-						IndentLevel++;
+						System.out.println("WAH!");
+//						IndentLevel++;
 						break;
 					}
 				}
@@ -135,7 +134,11 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClassDeclaration(MiniJavaParser.ClassDeclarationContext ctx) { }
+	@Override public void exitClassDeclaration(MiniJavaParser.ClassDeclarationContext ctx) {
+		IndentLevel--;
+		writeIndent();
+		sbuilder.append("}\n");
+	}
 	/**
 	 * {@inheritDoc}
 	 *
@@ -174,6 +177,8 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 		if(ctx.type().LSB() != null){
 			sbuilder.append("[]");
 		}
+
+		sbuilder.append("/ access modifier=" + (ctx.accessModifier() == null ? "public" : ctx.accessModifier()));
 		sbuilder.append("\n");
 	}
 	/**
@@ -189,7 +194,8 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 */
 	@Override public void enterLocalDeclaration(MiniJavaParser.LocalDeclarationContext ctx) {
 		writeIndent();
-		sbuilder.append("local var: " + ctx.Identifier() + "/ " + "type=" +  ctx.type().Identifier()  + "\n");
+		sbuilder.append("local var: " + ctx.Identifier() + "/ " + "type="
+				+  (ctx.type().Identifier() == null ? ctx.type().javaType().getText() : ctx.type().Identifier().getText())  + "\n");
 	}
 	/**
 	 * {@inheritDoc}
@@ -202,13 +208,39 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMethodDeclaration(MiniJavaParser.MethodDeclarationContext ctx) { }
+	@Override public void enterMethodDeclaration(MiniJavaParser.MethodDeclarationContext ctx) {
+		writeIndent();
+		IndentLevel++;
+		sbuilder.append("class method: " + ctx.Identifier() + "/return type=");
+		if(ctx.returnType().type() == null){
+			sbuilder.append("void");
+		}else{
+			sbuilder.append(ctx.returnType().type().Identifier() == null ? ctx.returnType().type().javaType().getText()
+					: ctx.returnType().type().Identifier());
+		}
+		sbuilder.append("/ access modifier=" + ctx.accessModifier().getText() + "{\n");
+//		writeIndent();
+		if(ctx.parameterList() != null){
+			IndentLevel++;
+			writeIndent();
+			sbuilder.append("parameters list=[");
+			for(int i = 0; ctx.parameterList().parameter(i) != null; i++){
+				sbuilder.append(ctx.parameterList().parameter(i).type().getText() + " "
+						+ ctx.parameterList().parameter(i).Identifier() + ", ");
+			}
+			sbuilder.append("]\n");
+		}
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMethodDeclaration(MiniJavaParser.MethodDeclarationContext ctx) { }
+	@Override public void exitMethodDeclaration(MiniJavaParser.MethodDeclarationContext ctx) {
+		IndentLevel--;
+		writeIndent();
+		sbuilder.append("}\n");
+	}
 	/**
 	 * {@inheritDoc}
 	 *
@@ -310,13 +342,21 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNestedStatement(MiniJavaParser.NestedStatementContext ctx) { }
+	@Override public void enterNestedStatement(MiniJavaParser.NestedStatementContext ctx) {
+		writeIndent();
+		sbuilder.append("nested statement{\n");
+		IndentLevel++;
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNestedStatement(MiniJavaParser.NestedStatementContext ctx) { }
+	@Override public void exitNestedStatement(MiniJavaParser.NestedStatementContext ctx) {
+		IndentLevel--;
+		writeIndent();
+		sbuilder.append("}\n");
+	}
 	/**
 	 * {@inheritDoc}
 	 *
