@@ -176,6 +176,9 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 		}else{
 			sbuilder.append(ctx.returnType().type().Identifier() == null ? ctx.returnType().type().javaType().getText()
 					: ctx.returnType().type().Identifier());
+			if(ctx.returnType().type().LSB() != null){
+				sbuilder.append("[]");
+			}
 		}
 		sbuilder.append("/ access modifier=public\n");
 	}
@@ -239,7 +242,11 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 		}else{
 			sbuilder.append(ctx.returnType().type().Identifier() == null ? ctx.returnType().type().javaType().getText()
 					: ctx.returnType().type().Identifier());
+			if(ctx.returnType().type().LSB() != null){
+				sbuilder.append("[]");
+			}
 		}
+
 		sbuilder.append("/ access modifier=" + ctx.accessModifier().getText() + "{\n");
 //		writeIndent();
 		if(ctx.parameterList() != null){
@@ -247,7 +254,7 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 			writeIndent();
 			sbuilder.append("parameters list=[");
 			for(int i = 0; ctx.parameterList().parameter(i) != null; i++){
-				sbuilder.append(ctx.parameterList().parameter(i).type().getText() + " "
+				sbuilder.append(ctx.parameterList().parameter(i).type().getText() + (ctx.returnType().type().LSB() != null ? "[]" : "") + " "
 						+ ctx.parameterList().parameter(i).Identifier() + ", ");
 			}
 			sbuilder.append("]\n");

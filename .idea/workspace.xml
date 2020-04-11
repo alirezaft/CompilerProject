@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="329f90be-3e5c-42ab-a9b6-4c2723c1249a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code.mj" beforeDir="false" afterPath="$PROJECT_DIR$/Code.mj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/alirezaft/Minijava/gen/MiniJavaBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alirezaft/Minijava/gen/MiniJavaBaseListener.java" afterDir="false" />
     </list>
@@ -31,16 +30,16 @@
         <entry file="file://$PROJECT_DIR$/grammar/MiniJava.g4">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="146">
-              <caret line="17" column="16" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="16" />
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/alirezaft/Minijava/gen/MiniJavaBaseListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="232" column="38" selection-start-line="232" selection-start-column="26" selection-end-line="232" selection-end-column="38" />
+            <state relative-caret-position="172">
+              <caret line="256" column="133" selection-start-line="256" selection-start-column="133" selection-end-line="256" selection-end-column="133" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -66,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code.mj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+            <state relative-caret-position="96">
+              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -79,9 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Class</find>
-      <find>Identi</find>
-      <find>classD</find>
       <find>identi</find>
       <find>identifierEx</find>
       <find>Identifier</find>
@@ -107,8 +103,11 @@
       <find>interfaceD</find>
       <find>inter</find>
       <find>interface</find>
-      <find>methodD</find>
       <find>entermethodD</find>
+      <find>return</find>
+      <find>methodD</find>
+      <find>interfaceM</find>
+      <find>parameters</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -128,8 +127,8 @@
         <option value="$PROJECT_DIR$/src/com/alirezaft/Minijava/Code.mj" />
         <option value="$PROJECT_DIR$/grammar/MiniJava.g4" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/com/alirezaft/Minijava/gen/MiniJavaBaseListener.java" />
         <option value="$PROJECT_DIR$/Code.mj" />
+        <option value="$PROJECT_DIR$/src/com/alirezaft/Minijava/gen/MiniJavaBaseListener.java" />
       </list>
     </option>
   </component>
@@ -229,12 +228,12 @@
       <workItem from="1585977829278" duration="9000000" />
       <workItem from="1586059902622" duration="170000" />
       <workItem from="1586077757400" duration="9277000" />
-      <workItem from="1586587121225" duration="4947000" />
+      <workItem from="1586587121225" duration="6515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52278000" />
+    <option name="totallyTimeSpent" value="53846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -423,24 +422,24 @@
     <entry file="file://$PROJECT_DIR$/grammar/MiniJava.g4">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
-          <caret line="17" column="16" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/alirezaft/Minijava/gen/MiniJavaBaseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="232" column="38" selection-start-line="232" selection-start-column="26" selection-end-line="232" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code.mj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        <state relative-caret-position="96">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alirezaft/Minijava/gen/MiniJavaBaseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="256" column="133" selection-start-line="256" selection-start-column="133" selection-end-line="256" selection-end-column="133" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
