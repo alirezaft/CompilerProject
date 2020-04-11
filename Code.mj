@@ -20,7 +20,7 @@ class Base implements Face{
 	public int get() {
 		return data;
 	}
-	private int test(){
+	private int[] test(){
 	    int a ;
 	    int b ;
 	    {
@@ -43,5 +43,5 @@ class Derived extends Base {
 
 interface Face{
     final int[] a = {1,2};
-    int getFace();
+    int[] getFace();
 }

@@ -108,7 +108,10 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 		if(ctx.getText().contains("implements") || ctx.getText().contains("extends")){
 			sbuilder.append("/ class parents: ");
 			if(ctx.getText().contains("extends")){
-				sbuilder.append(ctx.Identifier(1));
+				sbuilder.append(ctx.Identifier(1) + ", ");
+				if(!ctx.getText().contains("implements")){
+					sbuilder.append("\n");
+				}
 			}
 			if(ctx.getText().contains("implements")){
 				for(int i = ctx.getText().contains("extends")? 5 : 3; i < ctx.getChildCount(); i++){
@@ -144,19 +147,38 @@ public class MiniJavaBaseListener implements MiniJavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInterfaceDeclaration(MiniJavaParser.InterfaceDeclarationContext ctx) { }
+	@Override public void enterInterfaceDeclaration(MiniJavaParser.InterfaceDeclarationContext ctx) {
+		writeIndent();
+		IndentLevel++;
+		sbuilder.append("interface: " + ctx.Identifier() + "{\n");
+
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInterfaceDeclaration(MiniJavaParser.InterfaceDeclarationContext ctx) { }
+	@Override public void exitInterfaceDeclaration(MiniJavaParser.InterfaceDeclarationContext ctx) {
+		IndentLevel--;
+		writeIndent();
+		sbuilder.append("}\n");
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInterfaceMethodDeclaration(MiniJavaParser.InterfaceMethodDeclarationContext ctx) { }
+	@Override public void enterInterfaceMethodDeclaration(MiniJavaParser.InterfaceMethodDeclarationContext ctx) {
+		writeIndent();
+		sbuilder.append("interface method: " + ctx.Identifier() + "/ return type=");
+		if(ctx.returnType().type() == null){
+			sbuilder.append("void");
+		}else{
+			sbuilder.append(ctx.returnType().type().Identifier() == null ? ctx.returnType().type().javaType().getText()
+					: ctx.returnType().type().Identifier());
+		}
+		sbuilder.append("/ access modifier=public\n");
+	}
 	/**
 	 * {@inheritDoc}
 	 *
